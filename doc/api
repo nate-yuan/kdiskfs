@@ -1,0 +1,20 @@
+* Login:
+    URI: http://k.wps.cn/login/?act=login
+    Post: userName=YOUR_MAIL_BOX_ADDRESS
+          userPassword=YOUR_PASS_WORD
+          rememberme=0/1
+    Output: If success, nothing. Write a token to cookie
+    Cli: curl -d "userName=xxx@xxx.com&rememberme=1&userPassword=xxxx" http://k.wps.cn/login/?act=login -c cookie_file
+    All other operations needs this cookie_file
+
+* ListDir:
+    URI: http://k.wps.cn/fileviewer/tree/
+    Post: id=FILE_ID (root dir's id is root)
+
+        目录树 http://k.wps.cn/fileviewer/tree/    id=root     成功返回OK 格式同上
+        空间使用情况    http://k.wps.cn/fileviewer/getspace/        成功返回OK及总容量和使用量
+        目录及文件重命名    http://k.wps.cn/fileviewer/rename/  fileId=目录及文件ID&name=新文件名   成功返回OK
+        创建目录    http://k.wps.cn/fileviewer/createdir/   目录名&parentId=父目录ID(根:root)   成功返回OK
+        删除目录/文件   http://k.wps.cn/fileviewer/delete/  fileId[]=目录或文件ID   成功返回OK
+        取回收站列表    http://k.wps.cn/fileviewer/getrecycle/  shownum=512 每页显示文件数 512是最大数
+        显示指定目录下文件  http://k.wps.cn/fileviewer/list/    id=目录ID   成功返回OK及目录文件信息
